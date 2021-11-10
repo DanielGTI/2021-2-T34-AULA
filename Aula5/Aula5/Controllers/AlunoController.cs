@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Aula5.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -23,23 +24,25 @@ namespace Aula5.Controllers
         }
 
         // GET: AlunoController/Create
+        [HttpGet]
         public ActionResult Create()
         {
-            return View();
+            return View(new AlunoModel());
         }
 
         // POST: AlunoController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(AlunoModel pModel)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                pModel.Salvar();
+                return RedirectToAction("index");
             }
             catch
             {
-                return View();
+                return RedirectToAction("index");
             }
         }
 
