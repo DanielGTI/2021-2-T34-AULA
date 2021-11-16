@@ -11,10 +11,13 @@ namespace Aula5.Controllers
     public class AlunoController : Controller
     {
         // GET: AlunoController
+        [HttpGet]
         public ActionResult Index()
         {
             ViewData["Message"] = "Aluno... aguarde o final do semestre";
-            return View();
+            AlunoModel pModel = new AlunoModel();
+
+            return View( pModel.Listar() );
         }
 
         // GET: AlunoController/Details/5
